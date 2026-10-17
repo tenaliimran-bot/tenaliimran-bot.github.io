@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinancePulse & Tech Insights | Official Blog</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        * { transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+    </style>
+</head>
+<body class="h-full bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 flex flex-col antialiased">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchPage('home')">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/30">
+                    <i class="fa-solid fa-chart-line text-lg"></i>
+                </div>
+                <div>
+                    <span class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-indigo-600 to-violet-500 bg-clip-text text-transparent">FinancePulse</span>
+                    <span class="text-[10px] block text-slate-400 font-semibold uppercase tracking-wider">Tech & Wealth Insights</span>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-1">
+                <button onclick="switchPage('home')" id="nav-home" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400">Home</button>
+                <button onclick="switchPage('about')" id="nav-about" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900">About Us</button>
+                <button onclick="switchPage('contact')" id="nav-contact" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900">Contact</button>
+                <button onclick="switchPage('privacy')" id="nav-privacy" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900">Privacy Policy</button>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center space-x-3">
+                <button onclick="toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900" title="Toggle Theme">
+                    <i id="theme-icon" class="fa-solid fa-moon"></i>
+                </button>
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3 space-y-2">
+            <button onclick="switchPage('home'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Home</button>
+            <button onclick="switchPage('about'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">About Us</button>
+            <button onclick="switchPage('contact'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Contact</button>
+            <button onclick="switchPage('privacy'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Privacy Policy</button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+        <!-- 1. HOME PAGE VIEW -->
+        <section id="page-home" class="page-section space-y-10">
+            <!-- Hero Banner -->
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-900 via-slate-900 to-indigo-950 text-white p-8 sm:p-12 shadow-2xl border border-indigo-500/20">
+                <div class="absolute -right-10 -bottom-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="relative z-10 max-w-2xl space-y-4">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                        <i class="fa-solid fa-shield-halved mr-1.5 text-indigo-400"></i> AdSense Compliant Publisher Network
+                    </span>
+                    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+                        Insights on High-Yield Finance & Modern Tech
+                    </h1>
+                    <p class="text-slate-300 text-base sm:text-lg">
+                        Expert-curated breakdowns on personal wealth management, scalable cloud infrastructure, and programmatic monetization strategies.
+                    </p>
+                </div>
+            </div>
+
+            <!-- AdSense Leaderboard Slot -->
+            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border-2 border-dashed border-slate-300 dark:border-slate-800 text-center relative shadow-sm">
+                <span class="absolute top-2 left-3 text-[10px] uppercase font-bold tracking-wider text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">Google AdSense • Leaderboard (728x90)</span>
+                <div class="py-6 flex flex-col items-center justify-center space-y-1">
+                    <i class="fa-solid fa-rectangle-ad text-indigo-500 text-2xl mb-1"></i>
+                    <p class="text-xs font-medium text-slate-500 dark:text-slate-400">Sponsored Ad: Enterprise Cloud Infrastructure — 99.99% Guaranteed Uptime</p>
+                    <span class="text-[10px] text-indigo-600 dark:text-indigo-400 underline cursor-pointer">Learn More &rarr;</span>
+                </div>
+            </div>
+
+            <!-- Category Filter Bar -->
+            <div class="flex items-center space-x-2 overflow-x-auto pb-2">
+                <button onclick="filterArticles('All')" class="cat-btn px-4 py-2 rounded-xl text-sm font-semibold bg-indigo-600 text-white shadow-md shadow-indigo-600/20 whitespace-nowrap">All Articles</button>
+                <button onclick="filterArticles('Finance')" class="cat-btn px-4 py-2 rounded-xl text-sm font-medium bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-indigo-500 whitespace-nowrap">Finance</button>
+                <button onclick="filterArticles('Tech')" class="cat-btn px-4 py-2 rounded-xl text-sm font-medium bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-indigo-500 whitespace-nowrap">Tech</button>
+            </div>
+
+            <!-- Articles Grid (5 High-Value Articles) -->
+            <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Rendered dynamically by JS -->
+            </div>
+        </section>
+
+        <!-- 2. ARTICLE READER VIEW -->
+        <section id="page-reader" class="page-section hidden space-y-8">
+            <div class="max-w-4xl mx-auto bg-white dark:bg-slate-950 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-10 shadow-xl">
+                
+                <button onclick="switchPage('home')" class="mb-6 inline-flex items-center text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> Back to Articles
+                </button>
+
+                <!-- Article Header -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3 flex-wrap gap-2">
+                        <span id="reader-category" class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-900">Finance</span>
+                        <span class="text-slate-400 text-sm"><i class="fa-regular fa-clock mr-1"></i> <span id="reader-readtime">5 min read</span></span>
+                        <span class="text-slate-400 text-sm"><i class="fa-regular fa-calendar mr-1"></i> <span id="reader-date">Oct 17, 2026</span></span>
+                    </div>
+                    <h1 id="reader-title" class="text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
+                        <!-- Title -->
+                    </h1>
+                    <div class="flex items-center justify-between pt-2 border-b border-slate-200 dark:border-slate-800 pb-6">
+                        <div class="flex items-center space-x-3">
+                            <img src="https://placehold.co/40x40/4f46e5/ffffff?text=A" alt="Author" class="w-10 h-10 rounded-full ring-2 ring-indigo-500/20">
+                            <div>
+                                <h4 id="reader-author" class="text-sm font-semibold text-slate-800 dark:text-slate-200">Alexander Vance</h4>
+                                <p class="text-xs text-slate-400">Senior Financial Editor</p>
+                            </div>
+                        </div>
+                        <button onclick="copyArticleLink()" class="px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 flex items-center">
+                            <i class="fa-solid fa-link mr-1.5"></i> Copy Link
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Content & Sidebar Layout -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 pt-6">
+                    <div id="reader-body" class="lg:col-span-2 space-y-6 text-slate-700 dark:text-slate-300 leading-relaxed text-base">
+                        <!-- Dynamic Content -->
+                    </div>
+
+                    <!-- Sidebar Ad Unit -->
+                    <div class="space-y-6">
+                        <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4">
+                            <h4 class="text-sm font-bold uppercase tracking-wider text-slate-400">Sidebar Ad Slot (300x250)</h4>
+                            <div class="p-4 rounded-xl bg-white dark:bg-slate-950 border-2 border-dashed border-slate-300 dark:border-slate-800 text-center relative">
+                                <span class="absolute top-2 left-3 text-[10px] uppercase font-bold tracking-wider text-indigo-500 bg-indigo-50 dark:bg-indigo-950 px-2 py-0.5 rounded">AdSense Box</span>
+                                <div class="py-10 flex flex-col items-center justify-center space-y-2">
+                                    <i class="fa-solid fa-shield-halved text-indigo-600 text-2xl"></i>
+                                    <p class="text-xs font-medium text-slate-600 dark:text-slate-400">CyberShield Enterprise — Secure Cloud Data</p>
+                                    <span class="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 cursor-pointer">Sponsored Ad</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 3. ABOUT US VIEW -->
+        <section id="page-about" class="page-section hidden space-y-8 max-w-3xl mx-auto bg-white dark:bg-slate-950 p-8 sm:p-12 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl">
+            <div class="space-y-4">
+                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400">About Our Publication</span>
+                <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white">Empowering Digital Publishers & Investors</h1>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                    FinancePulse is an independent digital publication dedicated to exploring the intersection of modern financial technology, algorithmic wealth optimization, and scalable web publishing. Founded by industry veterans, our goal is to deliver rigorous, actionable insights for modern professionals.
+                </p>
+            </div>
+            <div class="border-t border-slate-200 dark:border-slate-800 pt-6 space-y-4">
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Editorial Integrity & Quality Standards</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Every article published on FinancePulse is meticulously reviewed for accuracy, relevance, and originality. We adhere strictly to digital advertising guidelines, ensuring a pristine user experience and transparent disclosures.
+                </p>
+            </div>
+        </section>
+
+        <!-- 4. CONTACT PAGE VIEW -->
+        <section id="page-contact" class="page-section hidden space-y-8 max-w-2xl mx-auto bg-white dark:bg-slate-950 p-8 sm:p-12 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl">
+            <div class="space-y-2">
+                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400">Get in Touch</span>
+                <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white">Contact Our Editorial Team</h1>
+                <p class="text-sm text-slate-600 dark:text-slate-400">Have questions, feedback, or advertising inquiries? Send us a message below.</p>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Your Name</label>
+                    <input type="text" id="contact-name" placeholder="John Doe" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:border-indigo-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Email Address</label>
+                    <input type="email" id="contact-email" placeholder="john@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:border-indigo-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Message</label>
+                    <textarea id="contact-msg" rows="4" placeholder="How can we help you?" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:border-indigo-500"></textarea>
+                </div>
+                <button onclick="submitContactForm()" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm shadow-lg shadow-indigo-600/20">Send Message</button>
+            </div>
+        </section>
+
+        <!-- 5. PRIVACY POLICY PAGE VIEW (AdSense Mandatory Requirement) -->
+        <section id="page-privacy" class="page-section hidden space-y-6 max-w-3xl mx-auto bg-white dark:bg-slate-950 p-8 sm:p-12 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl text-slate-700 dark:text-slate-300">
+            <div class="space-y-2 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400">Legal Compliance</span>
+                <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white">Privacy Policy</h1>
+                <p class="text-xs text-slate-400">Last updated: October 17, 2026</p>
+            </div>
+            
+            <div class="space-y-4 text-sm leading-relaxed">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">1. Information We Collect</h3>
+                <p>FinancePulse collects standard web analytics data via third-party partners (such as Google Analytics and Google AdSense) to understand traffic patterns, improve user experience, and serve relevant advertisements.</p>
+                
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">2. Google AdSense & Cookies</h3>
+                <p>Google, as a third-party vendor, uses cookies to serve ads on our site. Google's use of advertising cookies enables it and its partners to serve ads to our users based on their visit to our sites and/or other sites on the Internet.</p>
+                <p>Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" class="text-indigo-600 underline">Google Ads Settings</a>.</p>
+
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">3. Third-Party Links</h3>
+                <p>Our website may contain links to external sites not operated by us. We assume no responsibility for the privacy practices or content of any third-party websites.</p>
+
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">4. Contact Us</h3>
+                <p>If you have any questions regarding this Privacy Policy, please reach out via our Contact page.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 py-8 text-center text-sm text-slate-500 dark:text-slate-400 mt-12">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>&copy; 2026 FinancePulse. All rights reserved. Hosted on GitHub Pages.</p>
+            <div class="flex items-center space-x-6">
+                <button onclick="switchPage('home')" class="hover:text-indigo-600">Home</button>
+                <button onclick="switchPage('about')" class="hover:text-indigo-600">About</button>
+                <button onclick="switchPage('contact')" class="hover:text-indigo-600">Contact</button>
+                <button onclick="switchPage('privacy')" class="hover:text-indigo-600">Privacy Policy</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Application JavaScript Logic -->
+    <script>
+        // 5 High-Value Articles Data Set
+        const articles = [
+            {
+                id: 1,
+                title: "Maximizing AdSense RPM: High-Yield Financial Niches in 2026",
+                category: "Finance",
+                readTime: "5 min read",
+                date: "Oct 17, 2026",
+                author: "Alexander Vance",
+                image: "https://placehold.co/600x400/4f46e5/ffffff?text=Finance+RPM",
+                excerpt: "Discover the exact keyword strategies and responsive ad layouts that increase CPC and RPM for finance and fintech blogs.",
+                content: `
+                    <p class="text-lg font-medium text-slate-900 dark:text-slate-100">
+                        Navigating the programmatic advertising landscape requires deep keyword understanding and strategic layout planning. High-CPC verticals like wealth management, SaaS infrastructure, and corporate finance consistently outperform general entertainment blogs.
+                    </p>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white pt-2">1. The Mechanics of Cost-Per-Click (CPC)</h3>
+                    <p>
+                        Advertisers in the financial sector bid aggressively for high-intent traffic. When a reader clicks a targeted Google AdSense unit on your finance blog, the auction engine factors in the user's geographical region, device type, and historical search intent.
+                    </p>
+                    <div class="my-6 p-4 rounded-2xl bg-amber-50/50 dark:bg-amber-950/20 border-2 border-dashed border-amber-300 dark:border-amber-800/50 text-center relative">
+                        <span class="absolute top-2 left-3 text-[10px] uppercase font-bold tracking-wider text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/50 px-2 py-0.5 rounded">Google AdSense • In-Article Native Ad</span>
+                        <div class="py-6 flex flex-col items-center justify-center space-y-2">
+                            <i class="fa-solid fa-bullhorn text-amber-500 text-xl"></i>
+                            <p class="text-xs font-semibold text-slate-800 dark:text-slate-200">Automated Wealth Management Platform — Claim Your Free Financial Audit Today.</p>
+                            <button class="px-4 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold shadow">Get Started</button>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white pt-2">2. Optimizing Viewability and Core Web Vitals</h3>
+                    <p>
+                        Google rewards publishers who maintain low Cumulative Layout Shift (CLS) and fast Largest Contentful Paint (LCP). Placing ad units where users naturally pause their attention—such as directly below the fold and mid-article—dramatically improves click-through rates (CTR) without violating spam policies.
+                    </p>
+                `
+            },
+            {
+                id: 2,
+                title: "Architecting Microservices with Next.js and Go for High Throughput",
+                category: "Tech",
+                readTime: "8 min read",
+                date: "Oct 16, 2026",
+                author: "Sarah Lin",
+                image: "https://placehold.co/600x400/6366f1/ffffff?text=Cloud+Tech",
+                excerpt: "An in-depth technical dive into building resilient backend infrastructures capable of handling 100k requests per second.",
+                content: `
+                    <p class="text-lg font-medium text-slate-900 dark:text-slate-100">
+                        Modern distributed systems require robust concurrency models and lightning-fast database connection pooling to handle unpredictable traffic surges.
+                    </p>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white pt-2">1. Event-Driven Messaging with Kafka</h3>
+                    <p>
+                        Decoupling services using event streams ensures that database write locks do not cause cascading timeouts during peak operational windows.
+                    </p>
+                `
+            },
+            {
+                id: 3,
+                title: "Scaling SaaS Revenue: From Seed to Series B Valuation",
+                category: "Finance",
+                readTime: "6 min read",
+                date: "Oct 14, 2026",
+                author: "Marcus Vance",
+                image: "https://placehold.co/600x400/4338ca/ffffff?text=SaaS+Growth",
+                excerpt: "Strategic insights into customer acquisition costs, churn reduction, and automated monetization pipelines for modern enterprises.",
+                content: `
+                    <p class="text-lg font-medium text-slate-900 dark:text-slate-100">
+                        Transitioning from founder-led sales to predictable recurring revenue requires systematic pricing tiers and rigorous cohort analysis.
+                    </p>
+                `
+            },
+            {
+                id: 4,
+                title: "Zero-Trust Security Frameworks for Distributed Cloud Architectures",
+                category: "Tech",
+                readTime: "7 min read",
+                date: "Oct 12, 2026",
+                author: "Elena Rostova",
+                image: "https://placehold.co/600x400/312e81/ffffff?text=Cloud+Security",
+                excerpt: "Protecting sensitive corporate data in multi-region cloud deployments using strict cryptographic verification protocols.",
+                content: `
+                    <p class="text-lg font-medium text-slate-900 dark:text-slate-100">
+                        Perimeter-based security is obsolete in modern distributed cloud environments. Implementing Zero-Trust requires continuous identity verification across every microservice request.
+                    </p>
+                `
+            },
+            {
+                id: 5,
+                title: "Automated Cash Flow Forecasting Using Machine Learning Models",
+                category: "Finance",
+                readTime: "6 min read",
+                date: "Oct 10, 2026",
+                author: "David Chen",
+                image: "https://placehold.co/600x400/3730a3/ffffff?text=AI+Finance",
+                excerpt: "Leveraging Python and time-series regression models to predict enterprise liquidity crunches 90 days in advance.",
+                content: `
+                    <p class="text-lg font-medium text-slate-900 dark:text-slate-100">
+                        Traditional spreadsheets fail to capture non-linear cash flow fluctuations. Machine learning pipelines ingest historical ledger data to provide real-time predictive financial intelligence.
+                    </p>
+                `
+            }
+        ];
+
+        let currentFilter = 'All';
+
+        // Render Articles on Home
+        function renderArticles() {
+            const grid = document.getElementById('articles-grid');
+            let filtered = currentFilter === 'All' ? articles : articles.filter(a => a.category === currentFilter);
+
+            grid.innerHTML = filtered.map(article => `
+                <div onclick="openArticle(${article.id})" class="group cursor-pointer bg-white dark:bg-slate-950 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-xl hover:border-indigo-500/50 transition-all duration-300 flex flex-col">
+                    <div class="relative overflow-hidden aspect-video">
+                        <img src="${article.image}" alt="${article.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-semibold bg-white/90 dark:bg-slate-900/90 text-indigo-600 dark:text-indigo-400 backdrop-blur-md">
+                            ${article.category}
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <div class="flex items-center space-x-3 text-xs text-slate-400">
+                                <span><i class="fa-regular fa-clock mr-1"></i> ${article.readTime}</span>
+                                <span>•</span>
+                                <span><i class="fa-regular fa-calendar mr-1"></i> ${article.date}</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                                ${article.title}
+                            </h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">
+                                ${article.excerpt}
+                            </p>
+                        </div>
+                        <div class="pt-2 flex items-center justify-between text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+                            <span>Read Full Article</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter Category
+        function filterArticles(cat) {
+            currentFilter = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-md', 'shadow-indigo-600/20');
+                btn.classList.add('bg-white', 'dark:bg-slate-900', 'border', 'border-slate-200', 'dark:border-slate-800', 'text-slate-600', 'dark:text-slate-400');
+            });
+            event.target.classList.remove('bg-white', 'dark:bg-slate-900', 'border', 'border-slate-200', 'dark:border-slate-800', 'text-slate-600', 'dark:text-slate-400');
+            event.target.classList.add('bg-indigo-600', 'text-white', 'shadow-md', 'shadow-indigo-600/20');
+            renderArticles();
+        }
+
+        // Open Article Reader
+        function openArticle(id) {
+            const article = articles.find(a => a.id === id);
+            if (!article) return;
+
+            document.getElementById('reader-title').textContent = article.title;
+            document.getElementById('reader-category').textContent = article.category;
+            document.getElementById('reader-readtime').textContent = article.readTime;
+            document.getElementById('reader-date').textContent = article.date;
+            document.getElementById('reader-author').textContent = article.author;
+            document.getElementById('reader-body').innerHTML = article.content;
+
+            switchPage('reader');
+        }
+
+        // Page Switcher
+        function switchPage(pageName) {
+            document.querySelectorAll('.page-section').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`page-${pageName}`).classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-50', 'dark:bg-indigo-950/50', 'text-indigo-600', 'dark:text-indigo-400');
+                btn.classList.add('text-slate-600', 'dark:text-slate-400');
+            });
+
+            const activeNav = document.getElementById(`nav-${pageName}`);
+            if (activeNav) {
+                activeNav.classList.remove('text-slate-600', 'dark:text-slate-400');
+                activeNav.classList.add('bg-indigo-50', 'dark:bg-indigo-950/50', 'text-indigo-600', 'dark:text-indigo-400');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                html.classList.add('dark');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        // Contact Form Submit
+        function submitContactForm() {
+            const name = document.getElementById('contact-name').value.trim();
+            const email = document.getElementById('contact-email').value.trim();
+            const msg = document.getElementById('contact-msg').value.trim();
+
+            if (!name || !email || !msg) {
+                alert('Please fill out all fields before submitting.');
+                return;
+            }
+            alert('Thank you! Your message has been sent successfully.');
+            document.getElementById('contact-name').value = '';
+            document.getElementById('contact-email').value = '';
+            document.getElementById('contact-msg').value = '';
+            switchPage('home');
+        }
+
+        // Copy Article Link
+        function copyArticleLink() {
+            const dummy = window.location.href;
+            const tempInput = document.createElement('input');
+            document.body.appendChild(tempInput);
+            tempInput.value = dummy;
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            alert('Article link copied to clipboard!');
+        }
+
+        // Initialize on load
+        window.onload = function() {
+            renderArticles();
+        };
+    </script>
+</body>
+</html>
